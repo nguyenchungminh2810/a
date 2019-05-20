@@ -1,0 +1,302 @@
+﻿<!DOCTYPE html>
+<!--[if IE 7]><html class="ie ie7"><![endif]-->
+<!--[if IE 8]><html class="ie ie8"><![endif]-->
+<!--[if IE 9]><html class="ie ie9"><![endif]-->
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link href="apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="favicon.png" rel="icon">
+    <meta name="author" content="Nghia Minh Luong">
+    <meta name="keywords" content="Default Description">
+    <meta name="description" content="Default keyword">
+    <title>Sky - @ViewBag.Title</title>
+    <!-- Fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Archivo+Narrow:300,400,700%7CMontserrat:300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <!-- CSS Library-->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/owl.carousel.css" rel="stylesheet" />
+    <link href="~/Content/fontawesome-stars.css" rel="stylesheet" />
+    <link href="~/Content/slick.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-select.min.css" rel="stylesheet" />
+    <link href="~/Content/magnific-popup.css" rel="stylesheet" />
+    <link href="~/Content/jquery-ui.min.css" rel="stylesheet" />
+    <link href="~/Content/settings.css" rel="stylesheet" />
+    <link href="~/Content/layers.css" rel="stylesheet" />
+    <link href="~/Content/navigation.css" rel="stylesheet" />
+    <!-- Custom-->
+    <link href="~/Content/css/style.css" rel="stylesheet" />
+    <script src="~/Scripts/notifications/toastr.js"></script>
+    <link href="~/Content/notifications/toastr.css" rel="stylesheet" />
+    @model PagedList.IPagedList<DAMH.Models.sanpham>
+    @using PagedList.Mvc
+    <!--HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries-->
+    <!--WARNING: Respond.js doesn't work if you view the page via file://-->
+    <!--[if lt IE 9]><script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script><script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script><![endif]-->
+</head>
+<!--[if IE 7]><body class="ie7 lt-ie8 lt-ie9 lt-ie10"><![endif]-->
+<!--[if IE 8]><body class="ie8 lt-ie9 lt-ie10"><![endif]-->
+<!--[if IE 9]><body class="ie9 lt-ie10"><![endif]-->
+<body class="ps-loading">
+    <div class="header--sidebar"></div>
+    <header class="header">
+        <div class="header__top">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-6 col-md-8 col-sm-6 col-xs-12 ">
+                        <p>460 West 34th Street, 15th floor, New York  -  Hotline: 804-377-3580 - 804-399-3580</p>
+                    </div>
+                    <div class="col-lg-6 col-md-4 col-sm-6 col-xs-12 ">
+                        <div class="header__actions">
+                            @Html.Action("TenKhiLogin", "NguoiDung")
+                            <div class="btn-group ps-dropdown">
+                                <a class="dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">USD<i class="fa fa-angle-down"></i></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#"><img src="images/flag/usa.svg" alt=""> USD</a></li>
+                                    <li><a href="#"><img src="images/flag/singapore.svg" alt=""> SGD</a></li>
+                                    <li><a href="#"><img src="images/flag/japan.svg" alt=""> JPN</a></li>
+                                </ul>
+                            </div>
+                            <div class="btn-group ps-dropdown">
+                                <a class="dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Language<i class="fa fa-angle-down"></i></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">English</a></li>
+                                    <li><a href="#">Việt Nam</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="navigation">
+            <div class="container-fluid">
+                <div class="navigation__column left">
+                    <div class="header__logo">
+                        <a class="ps-logo" href="@Url.Action("Index","TrangChu")">
+                            <img src="~/images/logo.png" />
+                        </a>
+                    </div>
+                </div>
+                <div class="navigation__column center">
+                    <ul class="main-menu menu">
+                        <li class="menu-item menu-item-has-children dropdown">
+                            <a href="@Url.Action("Index","TrangChu")">Home</a>
+                            @*<ul class="sub-menu">
+                <li class="menu-item"><a href="index.html">Homepage #1</a></li>
+                <li class="menu-item"><a href="#">Homepage #2</a></li>
+                <li class="menu-item"><a href="#">Homepage #3</a></li>
+            </ul>*@
+                        </li>
+                        <li class="menu-item menu-item-has-children dropdown">
+                            <a href="@Url.Action("AllGiay","SanPham",new { page=1})">Giày</a>
+                            <ul class="sub-menu">
+                                @Html.Action("HieuGiay", "TrangChu")
+                            </ul>
+                        </li>
+                        <li class="menu-item menu-item-has-children dropdown">
+                            <a href="#">Áo</a>
+                            <ul class="sub-menu">
+                                <li class="menu-item"><a href="blog-list.html">Blog List</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu-item menu-item-has-children dropdown">
+                            <a href="#">Phụ Kiện</a>
+                            <ul class="sub-menu">
+                                <li class="menu-item"><a href="blog-list.html">Blog List</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu-item menu-item-has-children dropdown">
+                            <a href="#">Tin Tức</a>
+                            <ul class="sub-menu">
+                                <li class="menu-item menu-item-has-children dropdown">
+                                    <a href="blog-grid.html">Blog-grid</a>
+                                    <ul class="sub-menu">
+                                        <li class="menu-item"><a href="blog-grid.html">Blog Grid 1</a></li>
+                                        <li class="menu-item"><a href="blog-grid-2.html">Blog Grid 2</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item"><a href="blog-list.html">Blog List</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu-item menu-item-has-children dropdown">
+                            <a href="@Url.Action("phanhoi","TrangChu")">Liên Hệ</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="navigation__column right">
+                    <form class="ps-search--header" action="do_action" method="post">
+                        <input class="form-control" type="text" placeholder="Tìm…">
+                        <button><i class="ps-icon-search"></i></button>
+                    </form>
+                    <div class="ps-cart">
+
+                        
+                        @Html.Action("ParGioHang", "GioHang")
+
+                    </div>
+                    <div class="menu-toggle"><span></span></div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="header-services">
+        <div class="ps-services owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="7000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="false" data-owl-item="1" data-owl-item-xs="1" data-owl-item-sm="1" data-owl-item-md="1" data-owl-item-lg="1" data-owl-duration="1000" data-owl-mousedrag="on">
+            <p class="ps-service"><i class="ps-icon-delivery"></i><strong>Giao hàng miễn phí</strong>: Nhận giao hàng tiêu chuẩn miễn phí cho mỗi đơn hàng</p>
+            <p class="ps-service"><i class="ps-icon-delivery"></i><strong>Giao hàng miễn phí</strong>: Nhận giao hàng tiêu chuẩn miễn phí cho mỗi đơn hàng</p>
+            <p class="ps-service"><i class="ps-icon-delivery"></i><strong>Giao hàng miễn phí</strong>: Nhận giao hàng tiêu chuẩn miễn phí cho mỗi đơn hàng</p>
+        </div>
+    </div>
+    <main class="ps-main">
+        @RenderBody()
+        <div class="ps-subscribe">
+            <div class="ps-container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 ">
+                        <h3 style="margin-top:0px"><i class="fa fa-envelope"></i>Đăng ký nhận bản tin</h3>
+                    </div>
+                    <div class="col-lg-5 col-md-7 col-sm-12 col-xs-12 ">
+                        <form class="ps-subscribe__form" action="do_action" method="post">
+                            <input class="form-control" type="text" placeholder="">
+                            <button type="button" onclick="location.href='@Url.Action("DangKy", "NguoiDung")'">Đăng nhập ngay</button>
+                        </form>
+                    </div>
+                    <div class="col-lg-4 col-md-5 col-sm-12 col-xs-12 ">
+                        <p>.. và nhận phiếu giảm giá <span>$20</span> cho lần mua sắm đầu tiên</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ps-footer bg--cover" data-background="images/background/parallax.jpg">
+            <div class="ps-footer__content">
+                <div class="ps-container">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 ">
+                            <aside class="ps-widget--footer ps-widget--info">
+                                <header>
+                                    <a class="ps-logo" href="index.html"><img src="images/logo-white.png" alt=""></a>
+                                    <h3 class="ps-widget__title">chi nhánh 1</h3>
+                                </header>
+                                <footer>
+                                    <p><strong>460 West 34th Street, 15th floor, New York</strong></p>
+                                    <p>Email: <a href='mailto:support@store.com'>support@store.com</a></p>
+                                    <p>Phone: +323 32434 5334</p>
+                                    <p>Fax: ++323 32434 5333</p>
+                                </footer>
+                            </aside>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 ">
+                            <aside class="ps-widget--footer ps-widget--info second">
+                                <header>
+                                    <h3 class="ps-widget__title">chi nhánh 2</h3>
+                                </header>
+                                <footer>
+                                    <p><strong>PO Box 16122 Collins  Victoria 3000 Australia</strong></p>
+                                    <p>Email: <a href='mailto:support@store.com'>support@store.com</a></p>
+                                    <p>Phone: +323 32434 5334</p>
+                                    <p>Fax: ++323 32434 5333</p>
+                                </footer>
+                            </aside>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12 ">
+                            <aside class="ps-widget--footer ps-widget--link">
+                                <header>
+                                    <h3 class="ps-widget__title">Tìm cửa hàng của chúng tôi</h3>
+                                </header>
+                                <footer>
+                                    <ul class="ps-list--link">
+                                        <li><a href="#">mã giảm giá</a></li>
+                                        <li><a href="#">Đăng ký email</a></li>
+                                        <li><a href="#">Phản hồi trang web</a></li>
+                                        <li><a href="#">Careers</a></li>
+                                    </ul>
+                                </footer>
+                            </aside>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12 ">
+                            <aside class="ps-widget--footer ps-widget--link">
+                                <header>
+                                    <h3 class="ps-widget__title">trợ giúp</h3>
+                                </header>
+                                <footer>
+                                    <ul class="ps-list--line">
+                                        <li><a href="#">Tình trạng đặt hàng</a></li>
+                                        <li><a href="#">Vận chuyển và giao hàng</a></li>
+                                        <li><a href="#">Returns</a></li>
+                                        <li><a href="#">Lựa chọn thanh toán</a></li>
+                                        <li><a href="#">Liên hệ chúng tôi</a></li>
+                                    </ul>
+                                </footer>
+                            </aside>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12 ">
+                            <aside class="ps-widget--footer ps-widget--link">
+                                <header>
+                                    <h3 class="ps-widget__title">Products</h3>
+                                </header>
+                                <footer>
+                                    <ul class="ps-list--line">
+                                        <li><a href="#">Giày</a></li>
+                                        <li><a href="#">Quần áo</a></li>
+                                        <li><a href="#">Phụ kiện</a></li>
+                                    </ul>
+                                </footer>
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ps-footer__copyright">
+                <div class="ps-container">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
+                            <p>&copy; <a href="#">SKYTHEMES</a>, Inc. All rights Resevered. Design by <a href="#"> Alena Studio</a></p>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
+                            <ul class="ps-social">
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- JS Library-->
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.barrating.min.js"></script>
+    <script src="~/Scripts/owl.carousel.min.js"></script>
+    <script src="~/Scripts/gmap3.min.js"></script>
+    <script src="~/Scripts/imagesloaded.pkgd.js"></script>
+    <script src="~/Scripts/isotope.pkgd.min.js"></script>
+    <script src="~/Scripts/bootstrap-select.min.js"></script>
+    <script src="~/Scripts/jquery.matchHeight-min.js"></script>
+    <script src="~/Scripts/slick.min.js"></script>
+    <script src="~/Scripts/jquery.elevatezoom.js"></script>
+    <script src="~/Scripts/jquery.magnific-popup.min.js"></script>
+    <script src="~/Scripts/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAx39JFH5nhxze1ZydH-Kl8xXM3OK4fvcg&amp;region=GB"></script>
+    <script src="~/Scripts/jquery.themepunch.tools.min.js"></script>
+    <script src="~/Scripts/jquery.themepunch.revolution.min.js"></script>
+    <script src="~/Scripts/revolution.extension.actions.min.js"></script>
+    <script src="~/Scripts/revolution.extension.layeranimation.min.js"></script>
+    <script src="~/Scripts/revolution.extension.navigation.min.js"></script>
+    <script src="~/Scripts/revolution.extension.parallax.min.js"></script>
+    <script src="~/Scripts/revolution.extension.slideanims.min.js"></script>
+    <script src="~/Scripts/revolution.extension.video.min.js"></script>
+    <script src="~/Scripts/revolution.extension.kenburn.min.js"></script>
+    <script src="~/Scripts/revolution.extension.migration.min.js"></script>
+    <!-- Custom scripts-->
+    <script src="~/Scripts/main.js"></script>
+</body>
+</html>

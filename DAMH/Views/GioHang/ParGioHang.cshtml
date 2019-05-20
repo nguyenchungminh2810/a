@@ -1,0 +1,24 @@
+﻿<a class="ps-cart__toggle" href="@Url.Action("Index","GioHang")"><span><i>@ViewBag.SL</i></span><i class="ps-icon-shopping-cart"></i></a>
+<div class="ps-cart__listing">
+    <div class="ps-cart__content">
+        @foreach (var item in Model)
+        {
+            <div class="ps-cart-item">
+                <a class="ps-cart-item__close" href="#"></a>
+                <div class="ps-cart-item__thumbnail">
+                    <a href="product-detail.html"></a><img src="~/images/giay/@item.sAnhBia" alt="">
+                </div>
+                <div class="ps-cart-item__content">
+                    <a class="ps-cart-item__title" href="product-detail.html">@item.sTenSP</a>
+                    <p><span style="float:left">SL:<i>@item.iSoLuong</i></span><span style="float:right">Giá:<i>@string.Format("{0:0,000}", @item.iDonGia) Đ</i></span></p>
+                </div>
+            </div>
+        }
+
+    </div>
+    <div class="ps-cart__total">
+        <p>Tổng số lượng:<span>@ViewBag.TongSL</span></p>
+        <p>Thành tiền:<span>@string.Format("{0:0,000}", @ViewBag.TongTien) Đ</span></p>
+    </div>
+    <div class="ps-cart__footer"><a class="ps-btn" href="@Url.Action("ThanhToan","GioHang")">Thanh Toán<i class="ps-icon-arrow-left"></i></a></div>
+</div>

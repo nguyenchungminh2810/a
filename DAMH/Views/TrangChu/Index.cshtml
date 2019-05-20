@@ -1,0 +1,71 @@
+﻿@model IEnumerable<DAMH.Models.sanpham>
+@using DAMH.Models;
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<div class="ps-section__content pb-50">
+    <div class="masonry-wrapper" data-col-md="4" data-col-sm="2" data-col-xs="1" data-gap="30" data-radio="100%">
+        <div class="ps-masonry">
+            <div class="grid-sizer"></div>
+            @foreach (var item in Model)
+            {
+                <div class="grid-item kids">
+                    <div class="grid-item__content-wrapper">
+                        <div class="ps-shoe mb-30">
+                            <div class="ps-shoe__thumbnail">
+                                @if (Session["tentkkh"] == null)
+                                {
+                                    <a href="@Url.Action("DangNhap","NguoiDung")" class="ps-shoe__favorite"><i class="ps-icon-heart"></i></a><img style="width:330px; height:220px" src="~/images/giay/@item.hinhsp" alt=""><a class="ps-shoe__overlay" href="@Url.Action("ChiTietGiay","SanPham",new { id=item.masp})"></a>
+
+                                }
+                                else
+                                {
+                                    <a  class="ps-shoe__favorite" id="not-1" data-toggle="modal" data-target="#modalDaLuu"><i class="ps-icon-heart"></i></a><img style="width:330px; height:220px" src="~/images/giay/@item.hinhsp" alt=""><a class="ps-shoe__overlay" href="@Url.Action("ChiTietGiay","SanPham",new { id=item.masp})"></a>
+                                    <div class="modal fade" id="modalDaLuu">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Thông Báo</h4>
+                                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Đã lưu sản phẩm !!!
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a href="@Url.Action("DaLuu","NguoiDung",new {id=@item.masp,@sURL=Request.Url.ToString()})"><button type="button" class="btn btn-success">OK</button></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+                            </div>
+                            <div class="ps-shoe__content">
+                                <div class="ps-shoe__variants">
+                                    
+                                    <div class="ps-shoe__variant normal" style="padding-top:10px"><img src="~/images/giay/@item.hinhsp" alt=""><img src="~/images/giay/@item.hinhsp" alt=""><img src="~/images/giay/@item.hinhsp" alt=""><img src="~/images/giay/@item.hinhsp" alt=""></div>
+                                    <select class="ps-rating ps-shoe__rating">
+                                        <option value="1">1</option>
+                                        <option value="1">2</option>
+                                        <option value="1">3</option>
+                                        <option value="1">4</option>
+                                        <option value="2">5</option>
+                                    </select>
+                                </div>
+                                <div class="ps-shoe__detail">
+                                    <a class="ps-shoe__name" href="@Url.Action("ChiTietGiay","SanPham")">@item.tensp</a>
+                                    <p class="ps-shoe__categories"><a href="#">@item.loaisanpham.tenloaisp</a>,<a href="#">@item.thuonghieu.tenthuonghieu</a><h5></h5><span class="ps-shoe__price">@string.Format("{0:0,000}", @item.dongia) đ</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "Sản Phẩm Đã Lưu";
+    Layout = "~/Views/Shared/_LayoutGioHang.cshtml";
+}
+
+    <div class="ps-content pt-80 pb-80">
+        <div class="ps-container">
+            <div class="ps-cart-listing ps-table--whishlist">
+                <table class="table ps-cart__table">
+                    <thead>
+                        <tr>
+                            <th>Sản Phẩm</th>
+                            <th>Giá</th>
+                            <th>Chi Tiết</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td><a class="ps-product__preview" href="product-detail.html"><img style="width:100px;height:100px" class="mr-15" src="~/images/giay/@item.sanpham.hinhsp" alt=""> @item.sanpham.tensp</a></td>
+                                <td>@string.Format("{0:0,000}", @item.sanpham.dongia) Đ</td>
+                                <td><a class="ps-product-link" href="@Url.Action("ChiTietGiay","SanPham")">Chi Tiết</a></td>
+                                <td>
+                                    
+                                    <a href="#" data-toggle="modal" data-target="#modal-delete"><div class="ps-remove"> </div></a>
+                                    <div class="modal fade" id="modal-delete">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Xóa</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Bạn có chắn chắc muốn xóa không?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                                    <a href="@Url.Action("XoaLuu","NguoiDung",new { @id=item.id})"><button type="button" class="btn btn-success" >OK</button></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+

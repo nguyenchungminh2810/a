@@ -1,0 +1,146 @@
+﻿@using DAMH.Models
+@model Tuple<khachhang,List<GioHang>>  
+@{ 
+    ViewBag.Title = "Thanh Toán";
+    Layout = "~/Views/Shared/_LayoutGioHang.cshtml";
+}
+
+<div class="ps-checkout pt-80 pb-80">
+    <div class="ps-container">
+        @*<form class="ps-checkout__form" action="do_action" method="post">*@
+        @using (Html.BeginForm("ThanhToan", "GioHang", FormMethod.Post, new { @class = "ps-checkout__form", @method = "post" }))
+        { 
+                        @Html.ValidationSummary(true)
+                        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 ">
+                <div class="ps-checkout__billing">
+                    <h3>Chi tiết thanh toán</h3>
+                    <div class="form-group form-group--inline">
+                        <label>
+                            Họ Và Tên<span>*</span>
+                        </label>
+                        @Html.EditorFor(model => model.Item1.tenkh,new { htmlAttributes = new { @class = "form-control" }})
+                        @*<input class="form-control" type="text">*@
+                    </div>
+                    @*<div class="form-group form-group--inline">
+                            <label>
+                                Last Name<span>*</span>
+                            </label>
+                            <input class="form-control" type="text">
+                        </div>
+                        <div class="form-group form-group--inline">
+                            <label>
+                                Company Name<span>*</span>
+                            </label>
+                            <input class="form-control" type="text">
+                        </div>*@
+                    <div class="form-group form-group--inline">
+                        <label>
+                            Email<span>*</span>
+                        </label>
+                        @*<input class="form-control" type="email">*@
+                        @Html.EditorFor(model => model.Item1.emailkh, new { htmlAttributes = new { @class = "form-control" }})
+
+                    </div>
+                    @*<div class="form-group form-group--inline">
+                            <label>
+                                Company Name<span>*</span>
+                            </label>
+                            <input class="form-control" type="text">
+                        </div>*@
+                    <div class="form-group form-group--inline">
+                        <label>
+                            Điện Thoại<span>*</span>
+                        </label>
+
+                        @Html.EditorFor(model => model.Item1.sdtkh, new { htmlAttributes = new { @class = "form-control" } })
+
+                    </div>
+                    <div class="form-group form-group--inline">
+                        <label>
+                            Địa Chỉ Giao Hàng<span>*</span>
+                        </label>
+                        @Html.EditorFor(model => model.Item1.diachikh, new { htmlAttributes = new { @class= "form-control"}})
+
+                        @*<input class="form-control" type="text">*@
+                    </div>
+
+                    @*<div class="form-group">
+                            <div class="ps-checkbox">
+                                <input class="form-control" type="checkbox" id="cb01">
+                                <label for="cb01">Create an account?</label>
+                            </div>
+                        </div>*@
+                    <h3 class="mt-40"> Thông tin bổ sung</h3>
+                    <div class="form-group form-group--inline textarea">
+                        <label>Ghi Chú</label>
+                        <textarea class="form-control" rows="5" placeholder="Ghi chú về đơn hàng của bạn, ví dụ: ghi chú đặc biệt để giao hàng"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 ">
+                <div class="ps-checkout__order">
+                    <header>
+                        <h3>Đơn hàng của bạn</h3>
+                    </header>
+                    
+                    <div class="content">
+                        <table class="table ps-checkout__products">
+                            <thead>
+                                <tr>
+                                    <th class="text-uppercase">Sản Phẩm</th>
+                                    <th class="text-uppercase">Giá</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Item2)
+                                {
+                                    <tr>
+                                        <td>@item.sTenSP</td>
+                                        <td>@item.iDonGia</td>
+                                    </tr>
+                                }
+
+
+                                <tr>
+                                    <td style="color:#50cf96;font-size:25px">TỔNG TIỀN</td>
+                                    <td style="color:#50cf96;font-size:25px">@string.Format("{0:0,000}", ViewBag.TongTien) đ</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <footer>
+                        <h3>Phương thức thanh toán</h3>
+                        <div class="form-group cheque">
+                            <div class="ps-radio">
+                                <input class="form-control" type="radio" id="rdo01" name="payment" checked>
+                                <label for="rdo01">Thanh toán khi nhận hàng</label>
+                                <p>Vui lòng nhập họ tên, email, số điện thoại, địa chỉ nhận hàng</p>
+                            </div>
+                        </div>
+                        <div class="form-group paypal">
+                            <div class="ps-radio ps-radio--inline">
+                                <input class="form-control" type="radio" name="payment" id="rdo02">
+                                <label for="rdo02">Paypal</label>
+                            </div>
+                            <ul class="ps-payment-method">
+                                <li><a href="#"><img src="~/images/payment/1.png" alt=""></a></li>
+                                <li><a href="#"><img src="~/images/payment/2.png" alt=""></a></li>
+                                <li><a href="#"><img src="~/images/payment/3.png" alt=""></a></li>
+                            </ul>
+                            <button class="ps-btn ps-btn--fullwidth">Đặt hàng<i class="ps-icon-next"></i></button>
+                        </div>
+                        
+                    </footer>
+                </div>
+                <div class="ps-shipping">
+                    <h3>MIỄN PHÍ VẬN CHUYỂN</h3>
+                    <p>ĐẶT HÀNG CHẤT LƯỢNG CỦA BẠN ĐỂ GIAO HÀNG MIỄN PHÍ.<br> <a href="@Url.Action("DangNhap","NguoiDung")"> Đăng Nhập </a><br /> miễn phí vận chuyển trên mỗi đơn hàng, mọi lúc</p>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+</div>
+

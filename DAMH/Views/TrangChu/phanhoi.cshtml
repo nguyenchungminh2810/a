@@ -1,0 +1,104 @@
+﻿@model DAMH.Models.phanhoi
+
+@{
+    ViewBag.Title = "Liên Hệ";
+    Layout = "~/Views/Shared/_LayoutGioHang.cshtml";
+}
+
+<div class="ps-contact ps-section pb-80">
+    <div id="contact-map" data-address="New York, NY" data-title="Sky Store!" data-zoom="17">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.1257424098735!2d106.7122433140242!3d10.801680261682597!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528a501281b1f%3A0x6f43044e459b3132!2zNDc1YSDEkGnhu4duIEJpw6puIFBo4bunLCBQaMaw4budbmcgMjUsIELDrG5oIFRo4bqhbmgsIEjhu5MgQ2jDrSBNaW5oIDcwMDAwLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1556375885599!5m2!1svi!2s" width="600" height="560" frameborder="0" style="border:0" allowfullscreen></iframe>
+    </div>
+    <div class="ps-container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                <div class="ps-section__header mb-50">
+                    <h2 class="ps-section__title" data-mask="Contact">- Liên hệ</h2>
+                     @using (Html.BeginForm("phanhoi", "TrangChu",FormMethod.Post,new { @class = "ps-contact__form" })) // FormMethod.Post (lay text từ form add SQL)
+                     {
+                        @Html.ValidationSummary(true)
+                    @*<form class="ps-contact__form" action="do_action" method="post">*@
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
+                                <div class="form-group">
+                                    <label>Họ và tên <sub>*</sub></label>
+                                    <input class="form-control" type="text" placeholder="" name="Hoten">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
+                                <div class="form-group">
+                                    <label>Email <sub>*</sub></label>
+                                    <input class="form-control" type="email" placeholder="" name="Email">
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                                <div class="form-group mb-25">
+                                    <label>Nội Dung <sub>*</sub></label>
+                                    <textarea class="form-control" rows="6" name="tinnhan"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <button class="ps-btn"><type="submit" value= "">Gửi<i class="ps-icon-next"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    @*</form>*@
+                    }
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                <div class="ps-section__content">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
+                            <div class="ps-contact__block" data-mh="contact-block">
+                                <header>
+                                    <h3>USA <span> San Francisco</span></h3>
+                                </header>
+                                <footer>
+                                    <p><i class="fa fa-map-marker"></i> 19C Trolley Square  Wilmington, DE 19806</p>
+                                    <p><i class="fa fa-envelope-o"></i><a href="mailto@supportShoes@shoes.net">supportShoes@shoes.net</a></p>
+                                    <p><i class="fa fa-phone"></i> ( +84 ) 9892 2324  -  9401 123 003</p>
+                                </footer>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
+                            <div class="ps-contact__block" data-mh="contact-block">
+                                <header>
+                                    <h3>Ireland  <span> Dublin</span></h3>
+                                </header>
+                                <footer>
+                                    <p><i class="fa fa-map-marker"></i> 19C Trolley Square  Wilmington, DE 19806</p>
+                                    <p><i class="fa fa-envelope-o"></i><a href="mailto@supportShoes@shoes.net">supportShoes@shoes.net</a></p>
+                                    <p><i class="fa fa-phone"></i> ( +84 ) 9892 2324  -  9401 123 003</p>
+                                </footer>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
+                            <div class="ps-contact__block" data-mh="contact-block">
+                                <header>
+                                    <h3>Brazil <span> São Paulo</span></h3>
+                                </header>
+                                <footer>
+                                    <p><i class="fa fa-map-marker"></i> 19C Trolley Square  Wilmington, DE 19806</p>
+                                    <p><i class="fa fa-envelope-o"></i><a href="mailto@supportShoes@shoes.net">supportShoes@shoes.net</a></p>
+                                    <p><i class="fa fa-phone"></i> ( +84 ) 9892 2324  -  9401 123 003</p>
+                                </footer>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
+                            <div class="ps-contact__block" data-mh="contact-block">
+                                <header>
+                                    <h3>Philippines <span> Quezon City</span></h3>
+                                </header>
+                                <footer>
+                                    <p><i class="fa fa-map-marker"></i> 19C Trolley Square  Wilmington, DE 19806</p>
+                                    <p><i class="fa fa-envelope-o"></i><a href="mailto@supportShoes@shoes.net">supportShoes@shoes.net</a></p>
+                                    <p><i class="fa fa-phone"></i> ( +84 ) 9892 2324  -  9401 123 003</p>
+                                </footer>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
